@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -8,7 +8,7 @@ namespace EFDotnet21.Models
 {
     public partial class BikeStoresContext : DbContext
     {
-        
+       
 
         public BikeStoresContext(DbContextOptions<BikeStoresContext> options)
             : base(options)
@@ -27,7 +27,11 @@ namespace EFDotnet21.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=LAPTOP-SN1J0FQN\\SQLEXPRESS; Initial Catalog = BikeStores;Integrated Security=True");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -225,8 +229,6 @@ namespace EFDotnet21.Models
             {
                 entity.ToTable("staffs", "sales");
 
-                entity.HasIndex(e => e.Email, "UQ__staffs__AB6E6164D8EC0E26")
-                    .IsUnique();
 
                 entity.Property(e => e.StaffId).HasColumnName("staff_id");
 
