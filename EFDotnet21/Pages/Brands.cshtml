@@ -1,0 +1,22 @@
+﻿@page
+@model EFDotnet21.Pages.BrandsModel
+@{
+}
+<table class=" table table-bordered">
+    <thead>
+        <tr>
+            <th>Brand Id</th>
+            <th>Brand Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model.Brands)
+            {
+        <tr>
+            <td>@row.BrandId.</td>
+            <td>@row.BrandName</td>
+        </tr>
+            }
+    </tbody>
+
+</table>
