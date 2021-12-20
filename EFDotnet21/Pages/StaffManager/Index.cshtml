@@ -1,0 +1,78 @@
+﻿@page
+@model EFDotnet21.Pages.StafManager.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].Manager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].Store)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff[0].Manager)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Staff) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Store.StoreName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Orders.Count)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.StaffId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.StaffId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.StaffId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
